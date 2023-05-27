@@ -18,8 +18,7 @@ export default function UserList(props) {
                     id={user._id}
                     no={index + 1} 
                     name={user.name} 
-                    phone={user.phone} 
-                    remove={()=>props.remove(user.id)} />
+                    phone={user.phone} />
                 ))}
             </tbody>
         </table>

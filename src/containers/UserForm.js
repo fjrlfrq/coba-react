@@ -1,6 +1,8 @@
 import { Component } from "react";
+import { addUser } from "../actions/users"
+import { connect } from 'react-redux'
 
-export default class UserForm extends Component {
+class UserForm extends Component {
 
     constructor(props) {
         super(props)
@@ -22,7 +24,7 @@ export default class UserForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.submit({name: this.state.name, phone: this.state.phone})
+        this.props.add(this.state.name, this.state.phone)
         this.setState({name: '', phone: ''})
     }
 
@@ -46,3 +48,12 @@ export default class UserForm extends Component {
         )
     }
 }
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    add: (name, phone) => dispatch(addUser(name, phone))
+})
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(UserForm)
